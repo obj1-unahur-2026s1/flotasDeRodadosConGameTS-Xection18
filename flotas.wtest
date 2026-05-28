@@ -1,0 +1,40 @@
+import dependencias.*
+import rodados.*
+import colores.*
+import motores.*
+import interiores.*
+describe "test etapa 1" {
+
+    const deportes = new Dependencia(cantidadDeEmpleados = 45)
+    const cultura = new Dependencia(cantidadDeEmpleados = 31)
+
+    const cachito = new ChevyCorsa(color = rojo)
+
+    method initialize() {
+
+        const rodadosParaDeporte = [cachito, 
+            new ChevyCorsa(color = azul), 
+            new ChevyCorsa(color = verde),
+            new RenaultKwind(tieneTanque = true),
+            new AutosEspeciales(color = beige, velocidadMaxima = 160, capacidad = 5, peso = 1200)
+        ]
+
+        trafic.cambiarInterior(popular)
+        trafic.cambiarMotor(bataton)
+
+        const rodadosParaCultura =  [cachito,
+            new RenaultKwind(tieneTanque = true),
+            new RenaultKwind(tieneTanque = true),
+            new RenaultKwind(tieneTanque = false),
+            trafic
+        ]
+
+        deportes.agregarRodados(rodadosParaDeporte)
+        cultura.agregarRodados(rodadosParaCultura)
+    }
+
+    test "test peso total de la flota" {
+
+        assert.equals(6450, deportes.pesoTotalFlota())
+    }
+}
