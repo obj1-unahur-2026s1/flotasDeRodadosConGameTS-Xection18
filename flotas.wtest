@@ -3,6 +3,8 @@ import rodados.*
 import colores.*
 import motores.*
 import interiores.*
+import pedidos.*
+
 describe "test etapa 1" {
 
     const deportes = new Dependencia(cantidadDeEmpleados = 45)
@@ -36,5 +38,10 @@ describe "test etapa 1" {
     test "test peso total de la flota" {
 
         assert.equals(6450, deportes.pesoTotalFlota())
+    }
+
+    test "test peso total de la flota de cultura" {
+
+        assert.equals(10700, cultura.pesoTotalFlota())
     }
 }

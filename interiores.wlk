@@ -5,5 +5,5 @@ object comodo {
 
 object popular {
   method capacidad() = 12
-  method peso() = 100
+  method peso() = 1000
 }

@@ -1,9 +1,23 @@
 import colores.*
 import motores.*
 import interiores.*
+import wollok.game.*
 
 class ChevyCorsa {
   const property color
+  var position = new Position(x = 0, y = 0)
+  var positionAntigua = position
+  
+  method verPosicion() = position
+  method cambiarPosicion(nuevaPosicion) {
+    positionAntigua = position
+    position = nuevaPosicion
+  }
+
+  method pasoPor(posicion) = posicion == position || posicion == positionAntigua
+  method pasoPorFila(numero) {
+    return 
+  }
 
   method capacidad() = 4
   method peso() = 1300
@@ -35,7 +49,7 @@ object trafic {
   method cambiarMotor(nuevoMotor) {motor = nuevoMotor}
 
   method capacidad() = interior.capacidad()
-  method peso() = interior.peso() + motor.peso()
+  method peso() = 4000 + interior.peso() + motor.peso()
   method velocidadMaxima() = motor.velocidadMaxima()
   method color() = blanco
 }

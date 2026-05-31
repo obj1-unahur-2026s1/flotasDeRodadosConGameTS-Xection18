@@ -8,7 +8,7 @@ class Dependencia {
     }
 
     method agregarRodados(rodados) {
-        rodados.addAll(rodados)
+        flotaDeRodados.addAll(rodados)
     }
 
     method quitarFlota(rodado) {
@@ -61,13 +61,21 @@ class Dependencia {
         pedidos.remove(pedido)
     }
 
-    method agregarPedidos(pedidos) {
-        pedidos.addAll(pedidos)
+    method agregarPedidos(listDePedidos) {
+        pedidos.addAll(listDePedidos)
+    }
+
+    method quitarPedidos(listDePedidos) {
+        listDePedidos.removeAll(listDePedidos)
     }
 
     method totalDePasajerosEnPedidos() {
         return pedidos.sum({pedido => pedido.cantidadDePasajeros()})
     }
+
+    method pedidosQueNoPuedenSerSatisfechos() = pedidos.filter({ pedido => self.ningunAutoPuedeSatisfacer(pedido) })
+	method ningunAutoPuedeSatisfacer(pedido) = flotaDeRodados.all({ rodado => !pedido.puedeSerSatisfechoConAuto(rodado) })
+	method todosLosPedidosTienenIncompatible(color) = pedidos.all({ p => p.coloresIncompatibles().contains(color) })
 
     method relajarTodoslosPedidos() {
         pedidos.forEach({pedido => pedido.relajar()})
